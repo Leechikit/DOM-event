@@ -17,7 +17,7 @@ const eventFlow = (() => {
     *
     */
     function createHtml() {
-        const content = `<div class="mod-box" id="outer" data-name="outer">
+        const content = `<div class="mod-box" data-name="outer">
                             <div class="mod-box" data-name="inner1">
                                 <div class="mod-box" data-name="inner2">
                                 </div>
