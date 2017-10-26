@@ -8,7 +8,7 @@
 const question = (() => {
 
     // 是否开启捕捉
-    const ISCAPTURE = false;
+    const ISCAPTURE = true;
     // 是否清楚内容
     let isClear = false;
 
@@ -58,11 +58,11 @@ const question = (() => {
     function clickOuterHandle(event) {
         let target = event.target;
         const currTarget = event.currentTarget;
-        // console.log('delegation outer');
+        console.log('delegation outer');
         while (target && target !== currTarget) {
-            if (target.id == 'inner2') {
+            if (target.id == 'inner3') {
                 //  event.stopPropagation();
-                console.log('click inner2');
+                console.log('click inner3');
                 break;
             }
             target = target.parentNode;
@@ -77,11 +77,11 @@ const question = (() => {
 
         let target = event.target;
         const currTarget = event.currentTarget;
-        // console.log('delegation inner1');
+        console.log('delegation inner1');
         while (target && target !== currTarget) {
-            if (target.id == 'inner3') {
+            if (target.id == 'inner2') {
                  event.stopPropagation();
-                console.log('click inner3');
+                console.log('click inner2');
                 break;
             }
             target = target.parentNode;

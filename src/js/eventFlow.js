@@ -68,9 +68,11 @@ const eventFlow = (() => {
         const boxEls = document.getElementsByClassName('mod-box');
         for (let i = 0, len = boxEls.length; i < len; i++) {
             let boxEl = boxEls[i];
-            boxEl.addEventListener('click', clickHandle, false);
+            
             if (ISCAPTURE) {
                 boxEl.addEventListener('click', clickHandle, true);
+            }else{
+                boxEl.addEventListener('click', clickHandle, false);
             }
             boxEl.addEventListener('mousemove', event => {
                 isClear = true;
