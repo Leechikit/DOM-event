@@ -5,5 +5,5 @@ import eventDelegation from './js/eventDelegation.js';
 import question from './js/question.js';
 
 // eventFlow.init();
-// eventDelegation.init();
-question.init();
+eventDelegation.init();
+// question.init();
