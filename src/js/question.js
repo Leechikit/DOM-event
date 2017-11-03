@@ -8,7 +8,7 @@
 const question = (() => {
 
     // 是否开启捕捉
-    const ISCAPTURE = true;
+    const ISCAPTURE = false;
     // 是否清楚内容
     let isClear = false;
 

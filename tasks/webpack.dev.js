@@ -45,10 +45,8 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                     limit: 8192,
-                    prefix: 'img'
+                    name: 'image/[name].[ext]?[hash]'
                 }
-            }, {
-                loader: 'file-loader?name=image/[name].[ext]?[hash]'
             }]
         }, {
             test: /\.(html)$/,

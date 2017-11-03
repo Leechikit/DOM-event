@@ -9,8 +9,6 @@ const eventDelegation = (() => {
 
     // 是否开启捕捉
     const ISCAPTURE = false;
-    // 是否清楚内容
-    let isClear = false;
 
     /**
     * 创建html结构
@@ -20,6 +18,8 @@ const eventDelegation = (() => {
         const content = `<div class="mod-box" id="outer" data-name="outer">
                             <div class="mod-box" data-name="inner1">
                                 <div class="mod-box" id="inner2" data-name="inner2">
+                                    <div class="mod-box" id="inner3" data-name="inner3">
+                                    </div>
                                 </div>
                             </div>
                         </div>`;
@@ -27,58 +27,55 @@ const eventDelegation = (() => {
     }
 
     /**
+    * 获取子节点
+    *
+    */
+    function getChildNode(parentNode){
+        let child = parentNode.firstChild;
+        let result = null;
+        while (child) {
+            if(child.nodeType == 1){
+                result = child;
+                break;
+            }else{
+                child = child.nextSibling;
+            }
+        }
+        return result;
+    }
+
+    /**
     * 点击outer事件
     *
     */
     function clickOuterHandle(event) {
-        const target = event.target;
-        let level = '';
-        switch (event.eventPhase) {
-            case 0:
-                level = 'none';
+        let target = event.target;
+        let currTarget = event.currentTarget;
+        console.log('delegation outer');
+        console.log(event.eventPhase);
+        while (target && currTarget !== target.parentNode) {
+            if (target.id == 'inner3') {
+                alert('click inner3');
                 break;
-            case 1:
-                level = 'capturing';
-                break;
-            case 2:
-                level = 'target';
-                break;
-            case 3:
-                level = 'bubbling';
-                break;
-            default:
-                level = 'error';
-                break;
+            }
+            target = target.parentNode;
         }
-        console.log(`outer target：${target.getAttribute('data-name')} ${level}`);
+        // while (currTarget && target != currTarget.parentNode) {
+        //     if (currTarget.id == 'inner2') {
+        //         alert('click inner2');
+        //         break;
+        //     }
+        //     currTarget = getChildNode(currTarget);
+        // }
     }
 
     /**
     * 点击inner2事件
     *
     */
-    function clickInner2Handle(event){
-        event.stopPropagation();
-        const target = event.target;
-        let level = '';
-        switch (event.eventPhase) {
-            case 0:
-                level = 'none';
-                break;
-            case 1:
-                level = 'capturing';
-                break;
-            case 2:
-                level = 'target';
-                break;
-            case 3:
-                level = 'bubbling';
-                break;
-            default:
-                level = 'error';
-                break;
-        }
-        console.log(`inner target：${target.getAttribute('data-name')} ${level}`);
+    function clickInner2Handle(event) {
+        // event.stopPropagation();
+        console.log('click inner2');
     }
 
     /**
@@ -87,8 +84,7 @@ const eventDelegation = (() => {
     */
     function eventBind() {
         const outerEl = document.getElementById('outer');
-        outerEl.addEventListener('click', clickOuterHandle, ISCAPTURE);
-
+        outerEl.addEventListener('click', clickOuterHandle, !ISCAPTURE);
         const inner2El = document.getElementById('inner2');
         inner2El.addEventListener('click', clickInner2Handle, ISCAPTURE);
     }

@@ -2,7 +2,7 @@
     position: relative;
     display: inline-block;
     padding: 40px;
-    border: 1px solid #000;
+    border: 1px solid #999;
     &::after{
         content: attr(data-name);
         position: absolute;
@@ -13,4 +13,176 @@
 
 #info{
     white-space: pre;
+}
+
+.solve{
+    position: relative;
+    width: 815px;
+    height: 531px;
+    background: transparent url(../image/event-flow.jpg) center center no-repeat;
+    .method{
+        position: absolute;
+        left: 420px;
+        padding: 10px;
+        border: 2px solid #000;
+        border-radius: 20px;
+        background-color: #fff;
+        white-space: pre;
+        font-size: 14px;
+    }
+    #method1{
+        top: 20px;
+    }
+    #method2{
+        top: 260px;
+    }
+    p{
+        &.s-highline{
+            display: none;
+            color: #e6990b;
+        }
+    }
+    .event{
+        position: absolute;
+        left:50px;
+        animation: move2bodyX .5s cubic-bezier(0.42, 0, 0.9, 0.63) forwards,
+                   move2outerX 1s cubic-bezier(0.85, 0.16, 0.26, 1.14) .5s forwards,
+                   move2outerX 1s cubic-bezier(0.85, 0.16, 0.26, 1.14) 1.5s forwards,
+                   move2outerX 1s cubic-bezier(0.85, 0.16, 0.26, 1.14) 2.5s forwards,
+                   move2outerX 1s cubic-bezier(0.85, 0.16, 0.26, 1.14) 3.5s forwards,
+                   out2inner2X 1s cubic-bezier(0.99, 0.21, 0.18, 1.01) 4.5s forwards,
+                   out2inner2X 1s cubic-bezier(0.99, 0.21, 0.18, 1.01) 5.5s forwards,
+                   out2inner2X 1s cubic-bezier(0.99, 0.21, 0.18, 1.01) 6.5s forwards,
+                   out2inner2X 1s cubic-bezier(0.99, 0.21, 0.18, 1.01) 7.5s forwards,
+                   out2documentX .5s cubic-bezier(0.99, 0.21, 0.18, 1.01) 8.5s forwards;
+        &::after{
+            content: "event";
+            display: block;
+            width:60px;
+            height:60px;
+            border: 2px solid #000;
+            border-radius: 100%;
+            text-align: center;
+            line-height: 60px;
+            background-color: #fff;
+            animation: move2bodyY .5s cubic-bezier(0.13, 0.61, 0.58, 1) forwards,
+                       move2outerY 1s cubic-bezier(0.85, 0.16, 0.26, 1.14) .5s forwards,
+                       move2inner1Y 1s cubic-bezier(0.85, 0.16, 0.26, 1.14) 1.5s forwards,
+                       move2inner2Y 1s cubic-bezier(0.85, 0.16, 0.26, 1.14) 2.5s forwards,
+                       move2inner3Y 1s cubic-bezier(0.85, 0.16, 0.26, 1.14) 3.5s forwards,
+                       out2inner2Y 1s cubic-bezier(0.99, 0.21, 0.18, 1.01) 4.5s forwards,
+                       out2inner1Y 1s cubic-bezier(0.99, 0.21, 0.18, 1.01) 5.5s forwards,
+                       out2outerY 1s cubic-bezier(0.99, 0.21, 0.18, 1.01) 6.5s forwards,
+                       out2bodyY 1s cubic-bezier(0.99, 0.21, 0.18, 1.01) 7.5s forwards,
+                       out2documentY .5s cubic-bezier(0.99, 0.21, 0.18, 1.01) 8.5s forwards;
+        }
+    }
+}
+
+@keyframes move2bodyX{
+    100%{
+        transform: translateX(12px);
+    }
+}
+@keyframes move2bodyY{
+    100%{
+        transform: translateY(60px);
+    }
+}
+
+@keyframes move2outerX{
+    0%,100%{
+        transform: translateX(12px);
+    }
+    50%{
+        transform: translateX(0);
+    }
+}
+@keyframes move2outerY{
+    0%{
+        transform: translateY(60px);
+    }
+    100%{
+        transform: translateY(150px);
+    }
+}
+@keyframes move2inner1Y{
+    0%{
+        transform: translateY(150px);
+    }
+    100%{
+        transform: translateY(240px);
+    }
+}
+@keyframes move2inner2Y{
+    0%{
+        transform: translateY(240px);
+    }
+    100%{
+        transform: translateY(340px);
+    }
+}
+@keyframes move2inner3Y{
+    0%{
+        transform: translateY(340px);
+    }
+    100%{
+        transform: translateY(430px);
+    }
+}
+@keyframes out2inner2X{
+    0%,100%{
+        transform: translateX(245px);
+    }
+    30%{
+        transform: translateX(257px);
+    }
+}
+@keyframes out2inner2Y{
+    0%{
+        transform: translateY(430px);
+    }
+    100%{
+        transform: translateY(355px);
+    }
+}
+@keyframes out2inner1Y{
+    0%{
+        transform: translateY(355px);
+    }
+    100%{
+        transform: translateY(255px);
+    }
+}
+@keyframes out2outerY{
+    0%{
+        transform: translateY(255px);
+    }
+    100%{
+        transform: translateY(165px);
+    }
+}
+@keyframes out2bodyY{
+    0%{
+        transform: translateY(165px);
+    }
+    100%{
+        transform: translateY(75px);
+    }
+}
+@keyframes out2documentX{
+    0%{
+        transform: translateX(245px);
+    }
+    100%{
+        transform: translateX(257px);
+    }
+}
+@keyframes out2documentY{
+    0%{
+        transform: translateY(75px);
+    }
+    100%{
+        transform: translateY(-100px);
+    }
 }
